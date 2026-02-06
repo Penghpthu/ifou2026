@@ -1,0 +1,412 @@
+/* IFoU 2026 Conference Website - 全局样式文件 (LESS) */
+
+/* ========================================
+   Font Face Declarations
+   ======================================== */
+
+// Mixin for font-face declarations
+.font-face(@family, @file, @weight, @style: normal) {
+  @font-face {
+    font-family: @family;
+    src: url('../fonts/@{file}.ttf') format('truetype');
+    font-weight: @weight;
+    font-style: @style;
+    font-display: swap;
+  }
+}
+
+/* Alexandria Font Family - For Headings and Important Text */
+.font-face('Alexandria', 'Alexandria-ExtraLight', 200);
+.font-face('Alexandria', 'Alexandria-Light', 300);
+.font-face('Alexandria', 'Alexandria-Regular', 400);
+.font-face('Alexandria', 'Alexandria-Medium', 500);
+.font-face('Alexandria', 'Alexandria-SemiBold', 600);
+.font-face('Alexandria', 'Alexandria-Bold', 700);
+.font-face('Alexandria', 'Alexandria-ExtraBold', 800);
+
+/* Roboto Font Family - For Body Text */
+.font-face('Roboto', 'Roboto-Light', 300);
+.font-face('Roboto', 'Roboto-LightItalic', 300, italic);
+.font-face('Roboto', 'Roboto-Regular', 400);
+.font-face('Roboto', 'Roboto-Italic', 400, italic);
+.font-face('Roboto', 'Roboto-Medium', 500);
+.font-face('Roboto', 'Roboto-MediumItalic', 500, italic);
+
+/* ========================================
+   CSS Variables
+   ======================================== */
+
+:root {
+  /* 品牌颜色 - 基于视觉效果图 */
+  --primary-purple: #660874;
+  --primary-pink: #FF4E71;
+  --secondary-purple: #660874;
+  --light-purple: #F5E6FF;
+  
+  /* 文字颜色 */
+  --text-primary: #1E1E1E;
+  --text-secondary: #666666;
+  --text-light: #999999;
+  --text-white: #FFFFFF;
+  
+  /* 背景颜色 */
+  --bg-white: #FFFFFF;
+  --bg-light: #F8F8F8;
+  --bg-gray: #E5E5E5;
+  --bg-purple-gradient: linear-gradient(135deg, var(--primary-purple) 0%, var(--secondary-purple) 100%);
+  
+  /* 边框颜色 */
+  --border-color: #E0E0E0;
+  --border-light: #F0F0F0;
+  
+  /* 字体家族 */
+  --font-family-primary: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-family-heading: 'Alexandria', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  --font-family-button: 'Alexandria', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  
+  /* 字体大小 */
+  --font-size-xs: 0.75rem;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 1.875rem;
+  --font-size-4xl: 2.25rem;
+  --font-size-5xl: 3rem;
+  
+  /* 字体粗细 */
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  /* 间距 */
+  --spacing-xs: 0.25rem;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --spacing-xl: 2rem;
+  --spacing-2xl: 3rem;
+  --spacing-3xl: 8rem;
+  
+  /* 圆角 */
+  --radius-sm: 2px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+  
+  /* 阴影 */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+  
+  /* 过渡动画 */
+  --transition-fast: 150ms ease;
+  --transition-base: 250ms ease;
+  --transition-slow: 350ms ease;
+  
+  /* 容器最大宽度 */
+  --container-max-width: 1200px;
+  --container-padding: 2rem;
+}
+
+/* ========================================
+   Reset Styles
+   ======================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-family-primary);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  color: var(--text-primary);
+  line-height: 1.6;
+  background-color: var(--bg-white);
+  min-height: 100vh;
+}
+
+/* ========================================
+   Typography
+   ======================================== */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-purple);
+  line-height: 1.3;
+  margin-bottom: var(--spacing-md);
+}
+
+h1 {
+  font-size: var(--font-size-4xl);
+  margin-bottom: var(--spacing-lg);
+}
+
+h2 {
+  font-size: var(--font-size-3xl);
+  margin-bottom: var(--spacing-lg);
+}
+
+h3 {
+  font-size: var(--font-size-2xl);
+}
+
+h4 {
+  font-size: var(--font-size-xl);
+}
+
+h5 {
+  font-size: var(--font-size-lg);
+}
+
+h6 {
+  font-size: var(--font-size-base);
+}
+
+p {
+  margin-bottom: var(--spacing-md);
+  color: var(--text-secondary);
+}
+
+/* ========================================
+   Links
+   ======================================== */
+
+a {
+  color: var(--primary-purple);
+  text-decoration: none;
+  transition: color var(--transition-base);
+  
+  &:hover {
+    color: var(--primary-pink);
+  }
+  
+  &:active {
+    color: var(--secondary-purple);
+  }
+}
+
+/* ========================================
+   Buttons
+   ======================================== */
+
+.btn {
+  display: inline-block;
+  padding: var(--spacing-sm) var(--spacing-xl);
+  font-family: var(--font-family-button);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+  
+  &-primary {
+    background-color: var(--primary-pink);
+    color: var(--text-white);
+    
+    &:hover {
+      background-color: #D01B7C;
+      color: var(--text-white);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+  }
+  
+  &-secondary {
+    background-color: var(--primary-purple);
+    color: var(--text-white);
+    
+    &:hover {
+      background-color: var(--secondary-purple);
+      color: var(--text-white);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+  }
+  
+  &-outline {
+    background-color: transparent;
+    color: var(--primary-purple);
+    border: 2px solid var(--primary-purple);
+    
+    &:hover {
+      background-color: var(--primary-purple);
+      color: var(--text-white);
+    }
+  }
+}
+
+/* ========================================
+   Layout
+   ======================================== */
+
+.container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  width: 100%;
+}
+
+.section {
+  padding: var(--spacing-3xl) 0;
+}
+
+/* ========================================
+   Card
+   ======================================== */
+
+.card {
+  background-color: var(--bg-white);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  box-shadow: var(--shadow-md);
+  transition: box-shadow var(--transition-base);
+  
+  &:hover {
+    box-shadow: var(--shadow-lg);
+  }
+}
+
+/* ========================================
+   Numbered List
+   ======================================== */
+
+.numbered-item {
+  display: flex;
+  gap: var(--spacing-lg);
+  margin-bottom: var(--spacing-xl);
+  
+  &-number {
+    flex-shrink: 0;
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--primary-pink);
+    color: var(--text-white);
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+  }
+  
+  &-content {
+    h3 {
+      margin-top: 0;
+      font-family: var(--font-family-heading);
+    }
+  }
+}
+
+/* ========================================
+   Utility Classes
+   ======================================== */
+
+.text {
+  &-center {
+    text-align: center;
+  }
+  
+  &-purple {
+    color: var(--primary-purple);
+  }
+  
+  &-pink {
+    color: var(--primary-pink);
+  }
+}
+
+.bg {
+  &-light {
+    background-color: var(--bg-light);
+  }
+  
+  &-purple {
+    background-color: var(--primary-purple);
+    color: var(--text-white);
+  }
+}
+
+// Spacing utilities
+.mt {
+  &-sm { margin-top: var(--spacing-sm); }
+  &-md { margin-top: var(--spacing-md); }
+  &-lg { margin-top: var(--spacing-lg); }
+  &-xl { margin-top: var(--spacing-xl); }
+}
+
+.mb {
+  &-sm { margin-bottom: var(--spacing-sm); }
+  &-md { margin-bottom: var(--spacing-md); }
+  &-lg { margin-bottom: var(--spacing-lg); }
+  &-xl { margin-bottom: var(--spacing-xl); }
+}
+
+.pt {
+  &-sm { padding-top: var(--spacing-sm); }
+  &-md { padding-top: var(--spacing-md); }
+  &-lg { padding-top: var(--spacing-lg); }
+  &-xl { padding-top: var(--spacing-xl); }
+}
+
+.pb {
+  &-sm { padding-bottom: var(--spacing-sm); }
+  &-md { padding-bottom: var(--spacing-md); }
+  &-lg { padding-bottom: var(--spacing-lg); }
+  &-xl { padding-bottom: var(--spacing-xl); }
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+
+@media (max-width: 1024px) {
+  :root {
+    --container-padding: 1.5rem;
+    --font-size-4xl: 2rem;
+    --font-size-3xl: 1.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --container-padding: 1rem;
+    --font-size-4xl: 1.75rem;
+    --font-size-3xl: 1.5rem;
+    --font-size-2xl: 1.25rem;
+    --spacing-3xl: 2.5rem;
+  }
+  
+  .numbered-item {
+    flex-direction: column;
+    gap: var(--spacing-md);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --container-padding: 0.75rem;
+    --font-size-4xl: 1.5rem;
+    --font-size-3xl: 1.25rem;
+  }
+}
+

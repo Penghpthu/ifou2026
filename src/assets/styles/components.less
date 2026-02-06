@@ -1,0 +1,330 @@
+/* IFoU 2026 Conference - 组件样式 (LESS) */
+
+/* ========================================
+   Hero Banner
+   ======================================== */
+
+.hero-banner {
+  position: relative;
+  background: linear-gradient(135deg, #F5E6FF 0%, #FFFFFF 50%);
+  padding: var(--spacing-3xl) 0;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 60%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23E5E5E5" opacity="0.3"/></svg>');
+    background-size: cover;
+    opacity: 0.1;
+    pointer-events: none;
+  }
+}
+
+.decorative-curve {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  height: 200px;
+  background: var(--primary-pink);
+  clip-path: ellipse(100% 100% at 100% 100%);
+  opacity: 0.9;
+  z-index: 1;
+  
+  &-text {
+    position: absolute;
+    bottom: 40px;
+    right: 40px;
+    color: var(--text-white);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    transform: rotate(-15deg);
+    z-index: 2;
+  }
+}
+
+/* ========================================
+   Logo Section
+   ======================================== */
+
+.logo {
+  &-section {
+    margin-bottom: var(--spacing-xl);
+  }
+  
+  &-main {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-4xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-purple);
+    margin-bottom: var(--spacing-xs);
+  }
+  
+  &-subtitle {
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-lg);
+    color: var(--primary-purple);
+    font-weight: var(--font-weight-semibold);
+  }
+  
+  &-ifcu {
+    font-size: var(--font-size-5xl);
+    font-weight: var(--font-weight-bold);
+    margin-top: var(--spacing-md);
+    
+    &-text {
+      color: var(--primary-purple);
+    }
+    
+    &-year {
+      color: var(--primary-pink);
+    }
+  }
+  
+  &-date {
+    font-size: var(--font-size-base);
+    color: var(--text-secondary);
+    margin-top: var(--spacing-sm);
+    
+    strong {
+      color: var(--primary-pink);
+    }
+  }
+}
+
+/* ========================================
+   Section Title
+   ======================================== */
+
+.section-title {
+  display: inline-block;
+  background-color: var(--primary-purple);
+  color: var(--text-white);
+  font-family: var(--font-family-heading);
+  padding: var(--spacing-sm) var(--spacing-xl);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-xl);
+  
+  &.pink {
+    background-color: var(--primary-pink);
+  }
+}
+
+/* ========================================
+   Dates Table
+   ======================================== */
+
+.dates-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: var(--spacing-xl);
+  background-color: var(--bg-white);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  
+  thead {
+    background-color: var(--primary-purple);
+    color: var(--text-white);
+  }
+  
+  th,
+  td {
+    padding: var(--spacing-md) var(--spacing-lg);
+    text-align: left;
+    border-bottom: 1px solid var(--border-light);
+  }
+  
+  th {
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-lg);
+  }
+  
+  tbody {
+    tr {
+      &:hover {
+        background-color: var(--light-purple);
+        transition: background-color var(--transition-base);
+      }
+      
+      &:last-child td {
+        border-bottom: none;
+      }
+    }
+  }
+}
+
+/* ========================================
+   Content Section
+   ======================================== */
+
+.content-section {
+  background-color: var(--bg-white);
+  padding: var(--spacing-2xl);
+  margin-bottom: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  
+  &-title {
+    color: var(--primary-purple);
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--spacing-lg);
+  }
+  
+  &-subtitle {
+    color: var(--primary-pink);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-semibold);
+    margin-top: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
+  }
+}
+
+/* ========================================
+   Custom List
+   ======================================== */
+
+.custom-list {
+  list-style: none;
+  padding: 0;
+  
+  li {
+    padding-left: var(--spacing-lg);
+    margin-bottom: var(--spacing-sm);
+    position: relative;
+    
+    &::before {
+      content: '•';
+      color: var(--primary-pink);
+      font-size: var(--font-size-xl);
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+}
+
+/* ========================================
+   Theme Card
+   ======================================== */
+
+.theme-card {
+  background-color: var(--bg-white);
+  border: 2px solid var(--border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-xl);
+  margin-bottom: var(--spacing-lg);
+  transition: all var(--transition-base);
+  
+  &:hover {
+    border-color: var(--primary-pink);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-4px);
+  }
+  
+  &-number {
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--primary-pink);
+    color: var(--text-white);
+    font-family: var(--font-family-heading);
+    font-size: var(--font-size-xl);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    line-height: 3rem;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-md);
+  }
+}
+
+/* ========================================
+   Footer
+   ======================================== */
+
+.footer {
+  &-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-2xl);
+    padding: var(--spacing-xl) 0;
+    flex-wrap: wrap;
+  }
+  
+  &-logo {
+    height: 60px;
+    object-fit: contain;
+  }
+}
+
+/* ========================================
+   Submission Button
+   ======================================== */
+
+.submission-button {
+  background-color: var(--primary-pink);
+  color: var(--text-white);
+  font-family: var(--font-family-button);
+  padding: var(--spacing-md) var(--spacing-2xl);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all var(--transition-base);
+  box-shadow: var(--shadow-md);
+  
+  &:hover {
+    background-color: #D01B7C;
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  &:active {
+    transform: translateY(-1px);
+  }
+}
+
+/* ========================================
+   Responsive Design
+   ======================================== */
+
+@media (max-width: 768px) {
+  .hero-banner {
+    padding: var(--spacing-2xl) 0;
+  }
+  
+  .decorative-curve {
+    width: 70%;
+    height: 150px;
+  }
+  
+  .dates-table {
+    font-size: var(--font-size-sm);
+    
+    th,
+    td {
+      padding: var(--spacing-sm) var(--spacing-md);
+    }
+  }
+  
+  .footer {
+    &-logos {
+      gap: var(--spacing-lg);
+    }
+    
+    &-logo {
+      height: 40px;
+    }
+  }
+}
+
