@@ -5,6 +5,11 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute();
 
+// Helper function to get image URL
+const getImageUrl = (name: string) => {
+  return new URL(`../assets/images/${name}`, import.meta.url).href
+}
+
 // 滚动到锚点
 const scrollToAnchor = () => {
   const hash = route.hash;
@@ -88,14 +93,14 @@ const partnerJournals = ref<Journal[]>([
     url: 'https://www.ccprjournal.com.cn',
     url2: 'https://www.sciopen.com/journal/1002-8447',
     description: 'As a professional and academic English periodical in the area of urban planning and design in China, China City Planning Review (CCPR) was firstly publicized in 1985 right after China initiated its policies of reforms and opening-up. It is supervised by the Ministry of Housing and Urban-Rural Development, organized by the Urban Planning Society of China, and supported by the Beijing Tsinghua Tongheng Urban Planning & Design Institute and the School of Architecture of Tsinghua University.\n\nCCPR aims at building up an academic platform for worldwide readers to get the knowledge about urban planning and development in and beyond China. Articles in CCPR mainly cover various studies on Chinese cities from the perspective of urban planning and design, including status quos, problems, trends, planning strategies and relative policies of their development. It offers readers with different opinions and criticism from both home and abroad, giving a full understanding of what has happened or is happening in cities of China and other countries. Up to now, CCPR has been indexed by CNKI, CSCD, EBSCO, ProQuest, Wanfang, and SciOpen databases and subscribed by a great number of individuals and various institutions across the world.',
-    image: '/src/assets/images/journal1.png',
+    image: getImageUrl('journal1.png'),
     reverse: false
   },
   {
     title: 'Urban Design',
     url: '',
     description: 'The Journal of Urban Design is committed to presenting the most recent advancements in research, theory, practice, and pedagogy within the field of urban design. With a particular emphasis on offering support for theoretical and professional innovation in urban design in China, our goal is to establish a global academic platform for the exploration and exchange of pioneering themes in urban design. We prioritize innovation and practical application, featuring main columns such as \'Theory\', \'Method\', \'Design\', \'Review\', and \'Teaching Report\', thereby advancing both academic discourse and practical engagement worldwide.\n\nThe Journal of Urban Design is an academic and professional publication, supervised by the Ministry of Education of P. R. China and sponsored by Tsinghua University. The audiences can be professionals, scholars, as well as teachers and students in universities in the fields of architecture, urban-rural planning, landscape architecture and others.',
-    image: '/src/assets/images/journal2.png',
+    image: getImageUrl('journal2.png'),
     reverse: true
   },
   {
@@ -103,7 +108,7 @@ const partnerJournals = ref<Journal[]>([
     url: 'https://www.upi-planning.org.cn/',
     url2: 'https://qwcg.cbpt.cnki.net/EditorCN/index.aspx?t=1',
     description: 'As the only national academic journal in China focusing on overseas urban planning theory and practice, Urban Planning International was founded in 1979. It is supervised by the Ministry of Housing and Urban-Rural Development and sponsored by China Academy of Urban Planning and Design. UPI is a Chinese Core Journal, indexed in the PKU Core Journals, CSCD, CSSCI Extended Edition, AMI, RCCSE, WJCI, and IST databases, with a large number of individuals and institutional subscribers worldwide.\n\nAdhering to the editorial philosophy of a comprehensive perspective, constructive advocacy, and diversified exchanges, UPI keeps abreast of international theoretical and practical advances in the discipline and closely aligns with the needs of China\'s urban-rural development. The journal consistently strives to build a communication bridge for urban planners and builders at home and abroad. It focuses on in-depth exploration of theories, methodologies, and design practices in urban-rural studies and planning research. Each issue features a hot or key theme and provides accurate, timely updates on global urban planning developments.',
-    image: '/src/assets/images/journal3.png',
+    image: getImageUrl('journal3.png'),
     reverse: false
   }
 ]);

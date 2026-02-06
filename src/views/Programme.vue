@@ -4,6 +4,11 @@ import { useRoute } from 'vue-router';
 
 const route = useRoute();
 
+// Helper function to get image URL
+const getImageUrl = (name: string) => {
+  return new URL(`../assets/images/${name}`, import.meta.url).href
+}
+
 // Scroll to anchor on mount and when hash changes
 const scrollToAnchor = () => {
   const hash = route.hash;
@@ -42,7 +47,7 @@ const excursions = ref<Excursion[]>([
       'Tongzhou Green Heart Park is the ecological landmark of the Beijing City Sub-center. As the core of Beijing\'s first national industrial area, it has now been transformed into a thriving urban forest through ecological restoration. The park is located near the thousand-year-old Beijing-Hangzhou Grand Canal, with interconnected water systems blending the new center with historic heritage. Integrating key facilities such as the Beijing City Library, the Beijing Grand Canal Museum together form a "cultural museum cluster," serving as a new artistic landmark. Integrating ecology, history, and culture, it is not only a green space for public enjoyment but also a vivid example of urban renewal from an "industrial rust belt" to a "lifestyle belt."',
       'This half-day field research will commence with a coach journey from Tsinghua University to the Beijing Sub-Center. The tour is designed to provide a direct, on-site understanding of the Sub-Center\'s development through visits to its key landmarks. The itinerary centers on the Beijing Green Heart Forest Park, where participants will observe the preserved structures of the former Dongfang Chemical Plant and the historical Grand Canal locks integrated into the landscape, offering insight into the area\'s industrial heritage. The group will then proceed to the nearby Cultural Cluster to visit the Beijing Art Center, the Beijing City Library, and the Beijing Grand Canal Museum. This focused itinerary provides a firsthand experience of the Sub-Center\'s planning vision and its tangible transformation from an industrial base into a new ecological and cultural hub.'
     ],
-    image: '/src/assets/images/excursion1.png'
+    image: getImageUrl('excursion1.png')
   },
   {
     title: 'Liangma River International Style Waterfront',
@@ -51,7 +56,7 @@ const excursions = ref<Excursion[]>([
       'Liangma River, situated in the core area of Chaoyang District, stands as an exemplary model of urban waterfront revitalization and urban regeneration in Beijing in recent years. Once an ordinary, polluted, and largely inaccessible urban waterway, it has been transformed into an international-style waterfront that integrates ecological, leisure, cultural, and commercial functions. Through the joint efforts of the municipal government, property owners along the riverbanks, local residents, and other stakeholders, a series of projects—including dredging, water quality improvement, landscape lighting, and the connection of riverside walkways—have given Liangma River a completely new look. This transformation has not only enhanced the quality of the urban environment but also redefined the relationship between the city\'s people and their river—truly allowing Liangma River to shine.',
       'The half-day field visit will offer a unique spatial experience along the waterfront of Liangma River. Professional designers will provide detailed introductions regarding the project\'s implementation, design concepts, achievements, as well as the challenges overcome. The comprehensive improvement project of Liangma River spans approximately eight kilometers, while the tour route will mainly focus on the most vibrant section of the entire river stretch, including the embassy district, commercial areas, and urban parks. Visitors can explore the vibrant riverbanks adorned with green spaces, public plazas, stylish dining spots, and art installations, and experience firsthand how Liangma River has transformed into a beloved urban oasis—where Beijing\'s modern vitality and livable charm are on full display.'
     ],
-    image: '/src/assets/images/excursion2.png'
+    image: getImageUrl('excursion2.png')
   },
   {
     title: 'Qianmen Area',
@@ -65,7 +70,7 @@ const excursions = ref<Excursion[]>([
       '<strong>Yangmeizhu Xiejie:</strong> Adjacent to Qianmen Street and east of Dashila, Yangmeizhu Xiejie is a historic Ming-era alley now a hub of creative vitality. It blends well-preserved courtyards with niche cultural and creative shops, featuring Beijing-style cultural products like enamel mugs and ancient porcelain fragment artworks. Its "micro-renewal" model integrates heritage with immersive experiences, embodying a unique balance of old Beijing charm and modern creativity.',
       '<strong>Beijing Fun:</strong> adjacent to Qianmen Street and Yangmeizhu Xiejie, Beijing Fun is a landmark urban renewal project opened in 2017. It blends preserved heritage buildings like 1905 Quanyechang with contemporary architecture. Home to PageOne bookstore and MUJI Hotel, it serves as a "Chinese Lifestyle Experience Zone," integrating culture, art, commerce and immersive experiences.'
     ],
-    image: '/src/assets/images/excursion3.png'
+    image: getImageUrl('excursion3.png')
   },
   {
     title: 'Shougang Park',
@@ -74,7 +79,7 @@ const excursions = ref<Excursion[]>([
       'Once a century-old steel production site established in 1919, Shougang Park has been transformed into Beijing\'s iconic urban renewal landmark. Following the plant\'s relocation in 2005 for environmental considerations, this 8.63 km² industrial complex underwent a remarkable metamorphosis, catalyzed by the 2022 Winter Olympics. The park exemplifies innovative industrial heritage revitalization, preserving blast furnaces, cooling towers, and steel structures while repurposing them into cultural, commercial, and recreational spaces. Designated as China\'s first C40 "Climate Positive Development" project, it demonstrates how "industrial rust belts" can evolve into vibrant "urban showcases" through ecological restoration, low-carbon development, and creative adaptive reuse—offering a globally significant model for post-industrial transformation.',
       'The trip of Shougang Park aimed to explore the urban regeneration strategies and spatial transformation of the area in the context of the post-industrial era. Participants will first visit the No. 3 Blast Furnace, now converted into a premier MICE venue hosting fashion weeks and international conferences, illustrating heritage-led cultural revitalization. The itinerary continues to the Shougang Big Air—the permanent Olympic ski jump venue integrated with industrial structures—demonstrating how mega-events catalyze urban transformation. We will then walk along Shougang Highline Park, a converted elevated industrial corridor transformed into a linear greenway. From this unique vantage point, participants will enjoy panoramic views of Shijingshan Hill rising in the distance and observe the Yongding River, known as "Beijing\'s Mother River," winding through the landscape below. This elevated perspective reveals how the park\'s planning reconciles post-industrial transformation with hydrological systems and urban ecology.'
     ],
-    image: '/src/assets/images/excursion4.png'
+    image: getImageUrl('excursion4.png')
   }
 ]);
 </script>
