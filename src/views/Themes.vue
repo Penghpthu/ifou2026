@@ -2,6 +2,11 @@
 // Themes page - 会议主题介绍页面
 import { ref } from 'vue';
 
+// Helper function to get image URL
+const getImageUrl = (name: string) => {
+  return new URL(`../assets/images/${name}`, import.meta.url).href
+}
+
 // Theme data structure
 interface Theme {
   id: number;
@@ -36,8 +41,8 @@ const themes = ref<Theme[]>([
       { text: 'Envisioning green regions with nature-based spatial planning.' },
       { text: 'Critical assessments of "smart region" initiatives and their impacts on collaborative governance and cross-regional decision-making.' }
     ],
-    image: '/src/assets/images/0101.png',
-    speakerImage: '/src/assets/images/0102.png',
+    image: getImageUrl('0101.png'),
+    speakerImage: getImageUrl('0102.png'),
     speakerName: 'Yuan Lin',
     speakerTitle: 'Associate Professor, the Department of Urban Planning and Design, Tsinghua University School of Architecture',
     speakerBio: 'Yuan Lin is an Associate Professor in the Department of Urban Planning and Design at the Tsinghua University School of Architecture. His research centers on urban-rural ecological planning and the theory and practice of spatial planning for human-nature symbiosis. His recent projects investigate the natural system of traditional human settlements, the concept of the future "nature-city," and watershed spatial planning and ecological restoration. His work has earned him recognition as a Young Scientific and Technological Talent in Territorial Spatial Planning by the Ministry of Natural Resources, and he is a recipient of the inaugural Natural Resources Youth Science and Technology Award.',
@@ -59,8 +64,8 @@ const themes = ref<Theme[]>([
       { text: 'Planning and design of urban green infrastructure' },
       { text: 'AI applications in biodiversity conservation' }
     ],
-    image: '/src/assets/images/0201.png',
-    speakerImage: '/src/assets/images/0202.png',
+    image: getImageUrl('0201.png'),
+    speakerImage: getImageUrl('0202.png'),
     speakerName: 'He Huang',
     speakerTitle: 'Associate Professor, Deputy Chair of the Department of Urban Planning, Tsinghua University School of Architecture',
     speakerBio: 'Huang He is an Associate Professor at the School of Architecture, Tsinghua University, where she also holds the position of Deputy Chair of the Department of Urban Planning. Her research and teaching focus on urban design and culture-led urban regeneration, with a particular emphasis on the conservation and adaptive reuse of cultural heritage.\n\nShe has published 7 monographs and dozens of papers, among which "Cultural Planning: A Strategy for Overall Urban Development Based on Cultural Resources" is recognized as a highly cited book by the China Knowledge Infrastructure Project.\n\nShe holds multiple academic positions, including Deputy Secretary-General and Member of the Council of the Urban Design Branch of the Architectural Society of China, Deputy Director of the Academic Committee on Urban Regeneration and Planning Implementation of the Council of the Beijing Society. Additionally, she acts as Associate Editor of the journal Urban Design.',
@@ -79,8 +84,8 @@ const themes = ref<Theme[]>([
       { text: 'Utilizing participatory platforms using civic tech for inclusive planning and budget allocation.' },
       { text: 'Leveraging AI and emerging technologies for community development and housing equity, addressing ethical challenges in bias, privacy, and accountability.' }
     ],
-    image: '/src/assets/images/0301.png',
-    speakerImage: '/src/assets/images/0302.png',
+    image: getImageUrl('0301.png'),
+    speakerImage: getImageUrl('0302.png'),
     speakerName: 'Yulin Chen',
     speakerTitle: 'Associate Professor, Tsinghua University School of Architecture',
     speakerBio: 'Yulin Chen is an Associate Professor in the Department of Urban Planning and Design at Tsinghua University\'s School of Architecture. She is a SPURS fellow at MIT and an Outstanding Young Talent in Beijing. With a multidisciplinary background spanning architecture, urban planning, and sociology, her research interests include inclusive urbanization, megacity governance, and housing and community planning, with a particular focus on China\'s urbanization from the perspective of migrant integration and its spatial responses. She serves on the Academic Committee of the Urban Planning Society of China and the Community Research Committee of the Chinese Sociological Association. She has led many projects funded by the NSFC and NSSFC. She has published more than 70 papers and received multiple paper awards from the Urban Planning Society of China and the Chinese Sociological Association. Her new book, Inclusive Urban Renewal, proposes governance strategies for the regularization of informal housing from both domestic and international perspectives.',
@@ -99,8 +104,8 @@ const themes = ref<Theme[]>([
       { text: 'Social media and IoT data fusion via AI for crowdsourced environmental monitoring and crisis communication.' },
       { text: 'Critical analyses of algorithmic governance, public accountability, and digital divides in smart city programs.' }
     ],
-    image: '/src/assets/images/0401.png',
-    speakerImage: '/src/assets/images/0402.png',
+    image: getImageUrl('0401.png'),
+    speakerImage: getImageUrl('0402.png'),
     speakerName: 'Tang Yan',
     speakerTitle: 'Professor and doctoral supervisor, Department of Urban Planning and Design, Tsinghua University School of Architecture',
     speakerBio: 'Tang Yan is a professor and doctoral supervisor in the Department of Urban Planning and Design at Tsinghua University\'s School of Architecture, and serves as the Director of Editorial Department for China City Planning Review, the English journal of the China Urban Planning Society. She is a recipient of the Ministry of Education\'s Young Talent Program and a Humboldt Research Fellow, with research focusing on urban renewal, urban design, and urban-rural planning governance. She has authored over ten books, including Urban Regeneration in China: Institutional Innovation in Guangzhou, Shenzhen, and Shanghai and Chinese Urban Planning and Construction: From Historical Wisdom to Modern Miracles. Her scholarly contributions have been recognized with prestigious awards such as the First Prize of the National Outstanding Urban Planning and Design Award, a Silver Medal at the Paris International Exhibition of Inventions, and the Gold Medal in Urban Design at the Singapore Institute of Planners Awards.',
@@ -119,8 +124,8 @@ const themes = ref<Theme[]>([
       { text: 'Immersive VR/AR environments powered by AI for real-time participatory design review and digital prototyping.' },
       { text: 'Philosophical and pedagogical discussions on balancing computational logic with cultural meaning and aesthetic value in planning education and practice.' }
     ],
-    image: '/src/assets/images/0501.png',
-    speakerImage: '/src/assets/images/0502.png',
+    image: getImageUrl('0501.png'),
+    speakerImage: getImageUrl('0502.png'),
     speakerName: 'Yuan Lai',
     speakerTitle: 'Associate Professor and doctoral supervisor, Department of Urban Planning and Design, Tsinghua University School of Architecture',
     speakerBio: 'Yuan Lai is an Associate Professor and doctoral supervisor in the Department of Urban Planning and Design at Tsinghua University\'s School of Architecture. His research sits at the intersection of urban informatics, urban planning, and smart cities. He serves as the deputy secretary-general of the Technology Innovation Center for Smart Human Settlements and Spatial Planning & Governance, China Ministry of Natural Resources, as the deputy secretary-general of the Expert Committee in Digital Twins and Future Cities, Chinese Society for Urban Studies. A former Lecturer in Urban Science at MIT, his work is supported by organizations like the NSF and NSFC and has been published in leading journals such as Nature Cities and Landscape and Urban Planning. An award-winning researcher recognized by the UN, he holds a Ph.D. in Urban Systems from NYU.',
