@@ -36,14 +36,14 @@ interface FeeRow {
 
 const registrationFees = ref<FeeRow[]>([
   {
-    category: 'Early Bird /\nDiscounted Rate',
-    internationalStudents: '160*',
+    category: 'Early Bird / Discounted Rate\n(Before 1 July 2026)',
+    internationalStudents: '160',
     internationalScholars: '200',
     domesticStudents: '1,200',
     domesticScholars: '1,600'
   },
   {
-    category: 'Standard /\nFull Rate',
+    category: 'Standard / Full Rate*',
     internationalStudents: '200',
     internationalScholars: '250',
     domesticStudents: '1,500',
@@ -73,8 +73,8 @@ const registrationFees = ref<FeeRow[]>([
                   <th class="category-col">Category</th>
                   <th>International Students<br>(EUR)</th>
                   <th>International Scholars<br>(EUR)</th>
-                  <th>Domestic Students (CNY)</th>
-                  <th>Domestic Scholars (CNY)</th>
+                  <th>Domestic Students<br>(CNY)</th>
+                  <th>Domestic Scholars<br>(CNY)</th>
                 </tr>
               </thead>
               <tbody>
@@ -89,7 +89,9 @@ const registrationFees = ref<FeeRow[]>([
             </table>
           </div>
 
-          <p class="table-note">*IFoU Member Institution Discount 20%</p>
+          <p class="table-note">
+            *Participants from <a href="https://ifou.org" target="_blank" rel="noopener noreferrer" class="ifou-link">IFoU Member Institutions</a> registering after 1 July 2026 will enjoy 20% discount of the full rate. Submission of student card/staff card is required upon registration.
+          </p>
         </div>
       </section>
 
@@ -166,71 +168,94 @@ const registrationFees = ref<FeeRow[]>([
 }
 
 .section-subtitle {
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
-  font-family: var(--font-family-body);
+  font-family: var(--font-family-heading);
   color: var(--text-primary);
-  margin: 0 0 var(--spacing-xl) 0;
+  margin: 0 0 var(--spacing-2xl) 0;
 }
 
 /* Registration Fees Table */
 .fees-table-wrapper {
   width: 100%;
   overflow-x: auto;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-xl);
 }
 
 .fees-table {
   width: 100%;
   border-collapse: collapse;
+  background-color: #FFFFFF;
   
   th, td {
-    padding: var(--spacing-md) var(--spacing-lg);
+    padding: var(--spacing-lg) var(--spacing-xl);
     text-align: center;
     border: none;
-    border-bottom: 1px solid #E0E0E0;
     font-size: var(--font-size-base);
     font-family: var(--font-family-body);
   }
   
   thead {
+    background-color: #F5F5F5;
+    
     th {
-      font-weight: var(--font-weight-semibold);
+      font-weight: var(--font-weight-bold);
       color: var(--text-primary);
-      line-height: 1.4;
-      border-bottom: 2px solid #E0E0E0;
+      line-height: 1.5;
+      border-bottom: 1px solid #E0E0E0;
     }
   }
   
   tbody {
+    tr {
+      border-bottom: 1px solid #E0E0E0;
+      
+      &:last-child {
+        border-bottom: none;
+      }
+    }
+    
     td {
-      color: var(--text-secondary);
-      font-weight: 300;
+      color: var(--text-primary);
+      font-weight: 400;
     }
   }
   
   .category-col {
     text-align: left;
+    width: 25%;
   }
   
   .category-cell {
     text-align: left;
-    font-weight: var(--font-weight-medium);
+    font-weight: 400;
     color: var(--text-primary);
     white-space: pre-line;
+    line-height: 1.5;
   }
   
   .fee-cell {
-    font-weight: 500;
+    font-weight: 400;
   }
 }
 
 .table-note {
   font-size: var(--font-size-base);
-  font-weight: 400;
-  color: var(--text-primary);
-  margin: var(--spacing-xl) 0 0 0;
+  font-weight: 300;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
   font-family: var(--font-family-body);
+  
+  .ifou-link {
+    color: var(--text-secondary);
+    text-decoration: underline;
+    font-weight: 400;
+    
+    &:hover {
+      color: var(--primary-purple);
+    }
+  }
 }
 
 /* Conference Venue Section */
@@ -258,7 +283,7 @@ const registrationFees = ref<FeeRow[]>([
 /* Venue Images */
 .venue-images {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 6fr 4fr;
   gap: var(--spacing-xl);
   margin-bottom: var(--spacing-2xl);
 }
@@ -291,16 +316,38 @@ const registrationFees = ref<FeeRow[]>([
     font-size: var(--font-size-3xl);
   }
   
+  .section-subtitle {
+    font-size: var(--font-size-xl);
+  }
+  
   .fees-table {
     font-size: var(--font-size-sm);
     
     th, td {
       padding: var(--spacing-sm) var(--spacing-md);
     }
+    
+    .category-col {
+      width: 30%;
+    }
+  }
+  
+  .table-note {
+    font-size: var(--font-size-xs);
   }
   
   .venue-images {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .fees-table {
+    font-size: var(--font-size-xs);
+    
+    th, td {
+      padding: var(--spacing-xs) var(--spacing-sm);
+    }
   }
 }
 </style>

@@ -140,10 +140,10 @@ const scientificCommittee = ref<CommitteeMember[]>([
           <!-- Host Images -->
           <div class="host-images">
             <div class="host-image-item">
-              <img src="/src/assets/images/host2.jpg" alt="Tsinghua University Gate" class="host-image" />
+              <img src="/src/assets/images/host4.png" alt="Tsinghua University Gate" class="host-image" />
             </div>
             <div class="host-image-item">
-              <img src="/src/assets/images/host4.png" alt="Tsinghua University Building" class="host-image" />
+              <img src="/src/assets/images/host2.jpg" alt="Tsinghua University Building" class="host-image" />
             </div>
           </div>
 
@@ -387,7 +387,7 @@ const scientificCommittee = ref<CommitteeMember[]>([
 /* Host Images */
 .host-images {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 6fr 4fr;
   gap: var(--spacing-xl);
   margin-bottom: var(--spacing-xl);
 }

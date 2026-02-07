@@ -98,7 +98,7 @@ const partnerJournals = ref<Journal[]>([
   },
   {
     title: 'Urban Design',
-    url: '',
+    url: 'https://urbandesign.tsinghuajournals.com/CN/2096-1235/home.shtml',
     description: 'The Journal of Urban Design is committed to presenting the most recent advancements in research, theory, practice, and pedagogy within the field of urban design. With a particular emphasis on offering support for theoretical and professional innovation in urban design in China, our goal is to establish a global academic platform for the exploration and exchange of pioneering themes in urban design. We prioritize innovation and practical application, featuring main columns such as \'Theory\', \'Method\', \'Design\', \'Review\', and \'Teaching Report\', thereby advancing both academic discourse and practical engagement worldwide.\n\nThe Journal of Urban Design is an academic and professional publication, supervised by the Ministry of Education of P. R. China and sponsored by Tsinghua University. The audiences can be professionals, scholars, as well as teachers and students in universities in the fields of architecture, urban-rural planning, landscape architecture and others.',
     image: getImageUrl('journal2.png'),
     reverse: true
@@ -158,26 +158,30 @@ const partnerJournals = ref<Journal[]>([
         <h2 class="section-title">Partner Journals</h2>
 
         <div class="journals-list">
-          <div v-for="(journal, index) in partnerJournals" :key="index" class="journal-item" :class="{ 'reverse': journal.reverse }">
+          <div v-for="(journal, index) in partnerJournals" :key="index" class="journal-item" :class="{ 'reverse-layout': journal.reverse }">
             <div class="journal-image-wrapper" v-if="journal.image">
               <img :src="journal.image" :alt="journal.title" class="journal-image" />
             </div>
             
-            <div class="journal-content">
+            <div class="journal-text-content">
               <h3 class="journal-title">{{ journal.title }}</h3>
               
-              <div class="journal-links">
-                <a :href="journal.url" target="_blank" class="journal-link">{{ journal.url }}</a>
-                <a v-if="journal.url2" :href="journal.url2" target="_blank" class="journal-link">{{ journal.url2 }}</a>
+              <div class="journal-links" v-if="journal.url || journal.url2">
+                <a v-if="journal.url" :href="journal.url" target="_blank" rel="noopener noreferrer" class="journal-link">{{ journal.url }}</a>
+                <a v-if="journal.url2" :href="journal.url2" target="_blank" rel="noopener noreferrer" class="journal-link">{{ journal.url2 }}</a>
               </div>
 
               <div class="journal-description">
-                <p v-for="(paragraph, pIndex) in journal.description.split('\n\n')" :key="pIndex">
+                <p v-for="(paragraph, pIndex) in journal.description.split('\n\n')" :key="pIndex" :class="{ 'full-width': pIndex === journal.description.split('\n\n').length - 1 && !journal.reverse }">
                   {{ paragraph }}
                 </p>
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="journals-footer">
+          <p>More journals will be engaged soon...</p>
         </div>
       </section>
     </div>
@@ -349,22 +353,44 @@ const partnerJournals = ref<Journal[]>([
 .journals-list {
   display: flex;
   flex-direction: column;
-  gap: 8rem;
+  gap: 5rem;
+  margin-bottom: var(--spacing-3xl);
 }
 
 .journal-item {
-  display: flex;
-  gap: var(--spacing-2xl);
-  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
   
-  &.reverse {
+  /* 第二个杂志使用flex左右布局 */
+  &.reverse-layout {
+    display: flex;
+    gap: 3rem;
+    align-items: flex-start;
     flex-direction: row-reverse;
+    overflow: visible;
+    
+    .journal-image-wrapper {
+      float: none;
+      width: 240px;
+      margin: 0;
+      flex-shrink: 0;
+    }
+    
+    .journal-text-content {
+      flex: 1;
+    }
+    
+    .journal-description p.full-width {
+      clear: none;
+    }
   }
 }
 
 .journal-image-wrapper {
-  flex: 0 0 280px;
-  width: 280px;
+  width: 160px;
+  float: left;
+  margin-right: 2rem;
+  margin-bottom: 1rem;
 }
 
 .journal-image {
@@ -374,53 +400,64 @@ const partnerJournals = ref<Journal[]>([
   display: block;
 }
 
-.journal-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-}
-
 .journal-title {
-  font-size: var(--font-size-2xl);
+  font-size: 1.5rem;
   font-weight: var(--font-weight-bold);
   font-family: var(--font-family-heading);
   color: var(--text-primary);
-  margin: 0;
+  margin: 0 0 var(--spacing-xs) 0;
   line-height: 1.3;
 }
 
 .journal-links {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-xs);
+  gap: 2px;
+  margin-bottom: var(--spacing-md);
 }
 
 .journal-link {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  color: var(--primary-secondary);
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: #660874;
   text-decoration: none;
-  line-height: 1.4;
+  line-height: 1.5;
+  word-break: break-all;
   
   &:hover {
-    color: var(--primary-pink);
     text-decoration: underline;
   }
 }
 
 .journal-description {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-md);
-  
   p {
     font-size: var(--font-size-base);
     font-weight: 300;
     color: var(--text-secondary);
-    line-height: 1.5;
+    line-height: 1.6;
     text-align: justify;
+    margin: 0 0 var(--spacing-md) 0;
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+    
+    &.full-width {
+      clear: both;
+      width: 100%;
+    }
+  }
+}
+
+.journals-footer {
+  margin-top: var(--spacing-2xl);
+  
+  p {
+    font-size: var(--font-size-lg);
+    font-weight: 400;
+    color: var(--text-secondary);
     margin: 0;
+    text-align: left;
   }
 }
 
@@ -447,18 +484,45 @@ const partnerJournals = ref<Journal[]>([
     font-size: var(--font-size-base);
   }
   
+  .journals-list {
+    gap: var(--spacing-3xl);
+  }
+  
   .journal-item {
-    flex-direction: column !important;
+    overflow: visible;
+    
+    &.reverse-layout {
+      flex-direction: column !important;
+      gap: var(--spacing-lg);
+      
+      .journal-image-wrapper {
+        width: 100%;
+        max-width: 240px;
+        margin: 0 auto;
+      }
+    }
   }
   
   .journal-image-wrapper {
-    flex: 0 0 auto;
+    float: none !important;
     width: 100%;
-    max-width: 280px;
+    max-width: 200px;
+    margin: 0 auto var(--spacing-lg) auto;
+    display: block;
   }
   
   .journal-title {
     font-size: var(--font-size-xl);
+    clear: both;
+  }
+  
+  .journal-description p.full-width {
+    clear: none;
+  }
+  
+  .journals-footer p {
+    font-size: var(--font-size-base);
+    text-align: center;
   }
   
   .submission-button {

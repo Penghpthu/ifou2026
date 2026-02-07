@@ -27,13 +27,26 @@ interface Topic {
   text: string;
 }
 
+// Format description to bold the subtitle part in first paragraph
+const formatDescription = (paragraph: string, index: number) => {
+  if (index === 0) {
+    // Match pattern like "Urban-Rural Coordination and Regional Development:"
+    const match = paragraph.match(/^(.+?):\s*(.+)$/)
+    if (match) {
+      const [, boldPart, rest] = match
+      return `<strong>${boldPart}:</strong> ${rest}`
+    }
+  }
+  return paragraph
+}
+
 const themes = ref<Theme[]>([
   {
     id: 1,
     number: 'Theme 01',
     title: 'Integrating',
     subtitle: 'Urban-Rural Coordination and Regional Development',
-    description: 'Integrating – Urban-Rural Coordination and Regional Development: Critically examine and propose AI-enhanced planning approaches advancing urban-rural integration and sustainable regional development.\n\nThis stream critically examines and proposes planning approaches to advance urban-rural integration and foster sustainable regional development. We aim to redefine regional prosperity beyond GDP by focusing on the creation of green, resilient, and equitable regional systems. In these systems, resources, labor, and ecosystem services are orchestrated and flow in a balanced and sustainable manner.',
+    description: 'Urban-Rural Coordination and Regional Development: Critically examine and propose AI-enhanced planning approaches advancing urban-rural integration and sustainable regional development.\n\nThis stream critically examines and proposes planning approaches to advance urban-rural integration and foster sustainable regional development. We aim to redefine regional prosperity beyond GDP by focusing on the creation of green, resilient, and equitable regional systems. In these systems, resources, labor, and ecosystem services are orchestrated and flow in a balanced and sustainable manner. Potential topics include, but are not limit to:',
     topics: [
       { text: 'Spatial analytics for modeling dynamic urban-rural linkages and interdependencies.' },
       { text: 'Algorithmic tools for optimizing regional resource allocation (e.g., energy, water, food, green infrastructure) and network planning.' },
@@ -53,7 +66,7 @@ const themes = ref<Theme[]>([
     number: 'Theme 02',
     title: 'Preserving',
     subtitle: 'Cultural Heritage and Ecological Diversity',
-    description: 'Preserving – Cultural Heritage and Ecological Diversity: Interrogate how cities can act as responsible stewards of tangible/intangible heritage and biodiversity amidst rapid change.\n\nThis theme centers on practical applications and technical methodologies in the conservation and adaptive reuse of cultural heritage and biodiversity conservation, placing specific emphasis on artificial intelligence (AI) as an innovative tool.',
+    description: 'Cultural Heritage and Ecological Diversity: Interrogate how cities can act as responsible stewards of tangible/intangible heritage and biodiversity amidst rapid change.\n\nThis theme centers on practical applications and technical methodologies in the conservation and adaptive reuse of cultural heritage and biodiversity conservation, placing specific emphasis on artificial intelligence (AI) as an innovative tool. Potential topics include, but are not limit to:',
     topics: [
       { text: 'Cultural heritage conservation and adaptive reuse in the context of climate change and sustainable development' },
       { text: 'Integration of heritage conservation with urban planning' },
@@ -76,7 +89,7 @@ const themes = ref<Theme[]>([
     number: 'Theme 03',
     title: 'Engaging',
     subtitle: 'Inclusive Housing and Community Development',
-    description: 'Foreground equity and justice in the discourse on technology-driven urban regeneration.\n\nThis stream critically examines AI\'s dual potential - to exacerbate spatial inequality or serves as an empowerment tool – with a focus on socially integrated community development, affordable housing, participatory planning, and social capital strengthening in diverse communities.',
+    description: 'Inclusive Housing and Community Development: Foreground equity and justice in the discourse on technology-driven urban regeneration.\n\nThis stream critically examines AI\'s dual potential - to exacerbate spatial inequality or serves as an empowerment tool – with a focus on socially integrated community development, affordable housing, participatory planning, and social capital strengthening in diverse communities. Potential topics include, but are not limit to:',
     topics: [
       { text: 'Developing inclusive housing policies and predictive tools to identify displacement risks.' },
       { text: 'Promoting practices of community land trusts and cooperative housing models.' },
@@ -96,7 +109,7 @@ const themes = ref<Theme[]>([
     number: 'Theme 04',
     title: 'Responding',
     subtitle: 'Smart Governance and Climate Resilience',
-    description: 'Debate and shape the next generation of urban intelligence systems for effective and adaptive governance.',
+    description: 'Smart governance and climate resilience: Develop strategies to achieve effective and adaptive governance, optimize the urban thermal environment, and enhance infrastructure resilience across urban and rural areas by leveraging advanced technologies.\n\nThis theme contrasts top-down, centralized "city brain" approaches with bottom-up, distributed models, evaluating their efficacy in enhancing climate adaptation, disaster response, public service delivery, and overall urban resilience. Potential topics include, but are not limit to:',
     topics: [
       { text: 'AI-integrated Urban Operating Systems for real-time management of mobility, energy, and emergency services.' },
       { text: 'Predictive analytics and simulation for extreme weather event modeling and infrastructure resilience planning.' },
@@ -116,7 +129,7 @@ const themes = ref<Theme[]>([
     number: 'Theme 05',
     title: 'Shaping',
     subtitle: 'Design Thinking and AI Empowerment',
-    description: 'Investigate AI\'s transformative potential as a collaborative tool in the urban design and regeneration process. Moving beyond automation, this stream focuses on the synergistic "co-creation" between human intuition and machine intelligence, integrating design thinking and analytical insights, exploring new tools for generative design, performance simulation, and evidence-based decision support that enhance creative outcomes.',
+    description: 'Design Thinking and AI Empowerment: Investigate AI\'s transformative potential as a collaborative tool in the urban design and regeneration process. \n\nMoving beyond automation, this stream focuses on the synergistic "co-creation" between human intuition and machine intelligence, integrating design thinking and analytical insights, exploring new tools for generative design, performance simulation, and evidence-based decision support that enhance creative outcomes. Potential topics include, but are not limit to:',
     topics: [
       { text: 'AI as a design collaborator in architectural ideation, form-finding, and material optimization.' },
       { text: 'Big data and AI-based urban analytics, and machine learning analysis to inform regenerative design feedback loops.' },
@@ -139,25 +152,19 @@ const themes = ref<Theme[]>([
     <div class="container">
       <!-- Themes List -->
       <div class="themes-wrapper">
-        <div 
-          v-for="theme in themes" 
-          :key="theme.id" 
-          class="theme-block"
-        >
+        <div v-for="theme in themes" :key="theme.id" class="theme-block">
           <!-- Theme Content - Full Width -->
           <div class="theme-content">
             <h2 class="section-title">{{ theme.number }}</h2>
             <h3 class="theme-title">{{ theme.title }}</h3>
-            <h4 class="theme-subtitle">{{ theme.subtitle }}</h4>
             <div class="theme-description-wrapper">
-              <p v-for="(paragraph, index) in theme.description.split('\n\n')" :key="index" class="theme-description">
-                {{ paragraph }}
+              <p v-for="(paragraph, index) in theme.description.split('\n\n')" :key="index" class="theme-description"
+                v-html="formatDescription(paragraph, index)">
               </p>
             </div>
-            
+
             <!-- Topics List (if exists) -->
             <div v-if="theme.topics && theme.topics.length > 0" class="topics-section">
-              <h5 class="topics-title">Potential topics include, but are not limit to:</h5>
               <ul class="topics-list">
                 <li v-for="(topic, index) in theme.topics" :key="index" class="topic-item">
                   {{ topic.text }}
@@ -171,8 +178,8 @@ const themes = ref<Theme[]>([
             <img :src="theme.image" :alt="theme.title" class="theme-image" />
           </div>
 
-          <!-- Keynote Speaker Section - Full Width -->
-          <div class="keynote-speaker">
+          <!-- Keynote Speaker Section - Full Width (Hidden for now) -->
+          <!-- <div class="keynote-speaker">
             <div class="speaker-photo-wrapper">
               <img :src="theme.speakerImage" :alt="theme.speakerName" class="speaker-photo" />
             </div>
@@ -181,7 +188,7 @@ const themes = ref<Theme[]>([
               <p class="speaker-title">{{ theme.speakerTitle }}</p>
               <p class="speaker-bio">{{ theme.speakerBio }}</p>
             </div>
-          </div>
+          </div> -->
         </div>
       </div>
     </div>
@@ -193,6 +200,12 @@ const themes = ref<Theme[]>([
   width: 100%;
   padding: var(--spacing-3xl) 0;
   background-color: var(--background-white);
+  
+  // Ensure strong tags work in v-html content
+  strong {
+    font-weight: 700 !important;
+    color: #333333 !important;
+  }
 }
 
 .container {
@@ -211,11 +224,11 @@ const themes = ref<Theme[]>([
 .theme-block {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-2xl);
-  margin-bottom: 6rem;
-  padding-bottom: 6rem;
+  gap: var(--spacing-xl);
+  margin-bottom: 5rem;
+  padding-bottom: 5rem;
   border-bottom: 1px solid #E0E0E0;
-  
+
   &:last-child {
     margin-bottom: 0;
     border-bottom: none;
@@ -236,34 +249,24 @@ const themes = ref<Theme[]>([
   display: inline-block;
   background-color: var(--primary-purple);
   color: var(--text-white);
-  padding: 2px 2px;
-  font-size: var(--font-size-4xl);
+  padding: 2px 4px;
+  font-size: var(--font-size-2xl);
   font-weight: var(--font-weight-bold);
   font-family: var(--font-family-heading);
   border-radius: 0;
-  margin-bottom: var(--spacing-lg);
-  line-height: 0.9;
+  margin-bottom: var(--spacing-md);
+  line-height: 1;
   align-self: flex-start;
 }
 
 /* Theme Title - Pink */
 .theme-title {
-  font-size: var(--font-size-5xl);
+  font-size: 2.5rem;
   font-weight: var(--font-weight-bold);
   font-family: var(--font-family-heading);
   color: var(--primary-pink);
-  line-height: 0.8;
+  line-height: 1;
   letter-spacing: -0.02em;
-}
-
-/* Theme Subtitle - Black */
-.theme-subtitle {
-  font-size: var(--font-size-3xl);
-  font-weight: var(--font-weight-semibold);
-  font-family: var(--font-family-heading);
-  color: var(--text-primary);
-  line-height: 0.8;
-  margin-bottom: var(--spacing-md);
 }
 
 /* Theme Description */
@@ -280,44 +283,34 @@ const themes = ref<Theme[]>([
   line-height: 1.6;
   text-align: justify;
   margin: 0;
+
+  :deep(strong) {
+    font-weight: 500 !important;
+    color: var(--text-secondary) !important;
+  }
 }
 
 /* Topics Section */
 .topics-section {
-  margin-top: var(--spacing-md);
-}
-
-.topics-title {
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-semibold);
-  color: var(--text-secondary);
-  margin-bottom: var(--spacing-md);
-  line-height: 1.4;
+  margin-top: 0;
 }
 
 .topics-list {
-  list-style: none;
+  list-style: disc;
+  list-style-position: inside;
   padding-left: 0;
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-xs);
 }
 
 .topic-item {
   font-size: var(--font-size-base);
   font-weight: 300;
   color: var(--text-secondary);
-  line-height: 1.3;
-  padding-left: var(--spacing-md);
-  position: relative;
-  
-  &::before {
-    content: '•';
-    position: absolute;
-    left: 0;
-    color: var(--text-secondary);
-  }
+  line-height: 1.5;
+  text-align: justify;
 }
 
 /* Theme Image - Full Width */
@@ -397,54 +390,32 @@ const themes = ref<Theme[]>([
   .themes-page {
     padding: var(--spacing-2xl) 0;
   }
-  
+
   .themes-wrapper {
     gap: var(--spacing-3xl);
   }
-  
+
   .theme-block {
     margin-bottom: var(--spacing-2xl);
   }
-  
+
   .section-title {
-    font-size: var(--font-size-2xl);
+    font-size: var(--font-size-xl);
     padding: 2px 4px;
   }
-  
+
   .theme-title {
-    font-size: var(--font-size-2xl);
-  }
-  
-  .theme-subtitle {
-    font-size: var(--font-size-lg);
-  }
-  
-  .keynote-speaker {
-    flex-direction: column;
-    gap: var(--spacing-md);
-  }
-  
-  .speaker-photo-wrapper {
-    flex: 0 0 auto;
-    width: 150px;
+    font-size: 2rem;
   }
 }
 
 @media (max-width: 480px) {
   .section-title {
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-lg);
   }
-  
+
   .theme-title {
-    font-size: var(--font-size-xl);
-  }
-  
-  .theme-subtitle {
-    font-size: var(--font-size-base);
-  }
-  
-  .speaker-photo-wrapper {
-    width: 120px;
+    font-size: 1.5rem;
   }
 }
 </style>

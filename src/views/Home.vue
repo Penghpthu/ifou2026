@@ -462,8 +462,8 @@ h1.main-title {
   }
   
   ul {
-    list-style: none;
-    padding-left: var(--spacing-xl);
+    list-style: disc;
+    padding-left: var(--spacing-2xl);
     margin-top: var(--spacing-base);
     margin-bottom: 0;
     
@@ -473,13 +473,6 @@ h1.main-title {
       font-size: var(--font-size-base);
       font-weight: 300;
       line-height: 1.5;
-      position: relative;
-      padding-left: 0;
-      
-      &::before {
-        content: '- ';
-        color: var(--text-secondary);
-      }
     }
   }
 }

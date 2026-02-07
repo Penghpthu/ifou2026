@@ -29,18 +29,22 @@ const currentYear = new Date().getFullYear()
           <div class="logos-group">
             <!-- IFoU Logo -->
             <div class="logo-item">
-              <img v-if="logoLight" :src="logoLight" alt="International Forum on Urbanism" class="footer-logo-ifou" />
-              <div v-else class="footer-logo-placeholder">
-                <strong>INTERNATIONAL<br>FORUM ON<br>URBANISM</strong>
-              </div>
+              <a href="https://ifou.org/#/" target="_blank" rel="noopener noreferrer" class="logo-link">
+                <img v-if="logoLight" :src="logoLight" alt="International Forum on Urbanism" class="footer-logo-ifou" />
+                <div v-else class="footer-logo-placeholder">
+                  <strong>INTERNATIONAL<br>FORUM ON<br>URBANISM</strong>
+                </div>
+              </a>
             </div>
 
             <!-- School Logo -->
             <div class="logo-item">
-              <img v-if="schoolLogo" :src="schoolLogo" alt="School of Architecture, Tsinghua University" class="footer-logo-school" />
-              <div v-else class="footer-school-placeholder">
-                <p>School of Architecture, Tsinghua University</p>
-              </div>
+              <a href="https://www.arch.tsinghua.edu.cn/" target="_blank" rel="noopener noreferrer" class="logo-link">
+                <img v-if="schoolLogo" :src="schoolLogo" alt="School of Architecture, Tsinghua University" class="footer-logo-school" />
+                <div v-else class="footer-school-placeholder">
+                  <p>School of Architecture, Tsinghua University</p>
+                </div>
+              </a>
             </div>
           </div>
         </div>
@@ -89,6 +93,17 @@ const currentYear = new Date().getFullYear()
 .logo-item {
   display: flex;
   align-items: center;
+}
+
+.logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+  
+  &:hover {
+    opacity: 0.75;
+  }
 }
 
 /* IFoU Logo */

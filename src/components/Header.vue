@@ -83,10 +83,7 @@ const menuItems = ref<MenuItem[]>([
     path: '/attend',
     submenu: [
       { label: 'Registration', path: '/attend#registration' },
-      { label: 'Conference Venue', path: '/attend#conference-venue' },
-      { label: 'Hotels', path: '/attend#hotels', disabled: true },
-      { label: 'Transport', path: '/attend#transport', disabled: true },
-      { label: 'VISA', path: '/attend#visa', disabled: true }
+      { label: 'Conference Venue', path: '/attend#conference-venue' }
     ]
   },
   {
