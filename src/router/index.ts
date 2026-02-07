@@ -53,7 +53,25 @@ const routes: RouteRecordRaw[] = [
 
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+  scrollBehavior(to, _from, savedPosition) {
+    // 如果有保存的位置（浏览器前进/后退），使用保存的位置
+    if (savedPosition) {
+      return savedPosition
+    }
+    // 如果目标路由有hash（锚点链接），滚动到锚点
+    else if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: 'smooth',
+        top: 100 // 偏移量，避免被固定导航栏遮挡
+      }
+    }
+    // 否则滚动到页面顶部
+    else {
+      return { top: 0, behavior: 'smooth' }
+    }
+  }
 })
 
 export default router
