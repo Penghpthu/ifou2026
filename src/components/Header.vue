@@ -403,12 +403,12 @@ const toggleMobileMenu = () => {
   }
   
   &.disabled {
-    color: var(--text-secondary);
+    color: #CCCCCC;
     cursor: default;
     
     &:hover {
       background-color: transparent;
-      color: var(--text-secondary);
+      color: #CCCCCC;
     }
   }
 }
