@@ -88,18 +88,18 @@ const excursions = ref<Excursion[]>([
   <div class="programme-page">
     <div class="container">
       
-      <!-- Conference Programme Section -->
-      <section id="conference-programme" class="conference-section">
+      <!-- Conference Programme Section (Hidden for now) -->
+      <!-- <section id="conference-programme" class="conference-section">
         <h1 class="page-title">
           <span class="title-bg">Conference Programme</span>
         </h1>
         <p class="in-progress">In progress...</p>
-      </section>
+      </section> -->
 
       <!-- Excursions Section -->
       <section id="excursions" class="excursions-section">
         <h1 class="page-title">
-          <span class="title-bg">Excursions</span>
+          <span class="title-bg">Excursions*</span>
         </h1>
 
         <div class="excursions-list">
@@ -137,6 +137,10 @@ const excursions = ref<Excursion[]>([
             </div>
           </div>
         </div>
+
+        <p class="excursion-note">
+          <strong>*Excursions are included in the conference registration fees</strong>
+        </p>
       </section>
 
     </div>
@@ -261,6 +265,19 @@ const excursions = ref<Excursion[]>([
   width: 100%;
   height: auto;
   display: block;
+}
+
+/* Excursion Note */
+.excursion-note {
+  font-size: var(--font-size-base);
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-top: var(--spacing-2xl);
+  margin-bottom: 0;
+  
+  strong {
+    font-weight: var(--font-weight-bold);
+  }
 }
 
 /* Responsive Design */

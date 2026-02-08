@@ -55,13 +55,14 @@ onUnmounted(() => {
 interface MenuItem {
   label: string
   path: string
+  disabled?: boolean
   submenu?: { label: string; path: string; disabled?: boolean }[]
 }
 
 const menuItems = ref<MenuItem[]>([
   { label: 'Home', path: '/' },
   { label: 'Themes', path: '/themes' },
-  { label: 'Keynote Speakers', path: '/keynote-speakers' },
+  { label: 'Keynote Speakers', path: '/keynote-speakers', disabled: true },
   {
     label: 'Contribute',
     path: '/contribute',
@@ -74,7 +75,7 @@ const menuItems = ref<MenuItem[]>([
     label: 'Programme',
     path: '/programme',
     submenu: [
-      { label: 'Conference Programme', path: '/programme#conference-programme' },
+      { label: 'Conference Programme', path: '/programme#conference-programme', disabled: true },
       { label: 'Excursions', path: '/programme#excursions' }
     ]
   },
@@ -163,15 +164,26 @@ const toggleMobileMenu = () => {
               class="nav-item"
               :class="{ 
                 'has-submenu': item.submenu,
-                'active': isActive(item.path)
+                'active': isActive(item.path),
+                'disabled': item.disabled
               }"
-              @mouseenter="item.submenu && (activeMenu = item.label)"
+              @mouseenter="item.submenu && !item.disabled && (activeMenu = item.label)"
               @mouseleave="closeSubmenu"
             >
-              <router-link :to="item.path" class="nav-link">
+              <router-link 
+                v-if="!item.disabled"
+                :to="item.path" 
+                class="nav-link"
+              >
                 {{ item.label }}
                 <span v-if="item.submenu" class="dropdown-arrow">▼</span>
               </router-link>
+              <span 
+                v-else 
+                class="nav-link disabled"
+              >
+                {{ item.label }}
+              </span>
               
               <!-- Dropdown Menu -->
               <ul v-if="item.submenu" class="submenu" :class="{ active: activeMenu === item.label }">
@@ -306,10 +318,19 @@ const toggleMobileMenu = () => {
   &:hover {
     background-color: rgba(255, 255, 255, 0.4);
   }
+  
+  &.disabled {
+    color: #5A5A5A;
+    cursor: default;
+    
+    &:hover {
+      background-color: transparent;
+    }
+  }
 }
 
 .nav-item {
-  &.active .nav-link {
+  &.active .nav-link:not(.disabled) {
     background-color: #FFFFFF;
     color: #FF4E71;
     font-weight: var(--font-weight-semibold);
@@ -318,6 +339,10 @@ const toggleMobileMenu = () => {
       background-color: #FFFFFF;
       color: #FF4E71;
     }
+  }
+  
+  &.disabled {
+    pointer-events: none;
   }
 }
 
@@ -378,12 +403,12 @@ const toggleMobileMenu = () => {
   }
   
   &.disabled {
-    color: #CCCCCC;
-    cursor: not-allowed;
+    color: var(--text-secondary);
+    cursor: default;
     
     &:hover {
       background-color: transparent;
-      color: #CCCCCC;
+      color: var(--text-secondary);
     }
   }
 }
