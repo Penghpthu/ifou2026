@@ -18,10 +18,11 @@ try {
 
 // 导航栏滚动固定
 const isNavFixed = ref(false)
-const navbarOffset = ref(0)
+const navbarOffset = ref(Infinity) // 初始值设为无限大，避免在计算前错误触发固定状态
 
 const handleScroll = () => {
-  // 当滚动距离大于等于导航栏原始位置时，固定导航栏
+  // 当滚动距离大于等于banner高度时，固定导航栏
+  // 这样导航栏会随着banner一起向上移动，直到banner完全消失
   if (window.scrollY >= navbarOffset.value) {
     isNavFixed.value = true
   } else {
@@ -29,27 +30,49 @@ const handleScroll = () => {
   }
 }
 
-onMounted(() => {
-  // 延迟获取导航栏位置，确保 DOM 完全渲染
-  setTimeout(() => {
-    const bannerWrapper = document.querySelector('.banner-wrapper') as HTMLElement
-    const navbar = document.querySelector('.navbar') as HTMLElement
-    
-    if (bannerWrapper && navbar) {
-      // 获取 banner 的高度（包括图片）
-      const bannerHeight = bannerWrapper.offsetHeight
-      // 导航栏的高度
-      const navbarHeight = navbar.offsetHeight
-      // 导航栏应该在 banner 底部，所以固定点是 banner 高度减去导航栏高度
-      navbarOffset.value = bannerHeight - navbarHeight
-    }
-  }, 100)
+// 计算导航栏固定位置
+const calculateNavOffset = () => {
+  const bannerWrapper = document.querySelector('.banner-wrapper') as HTMLElement
   
+  if (bannerWrapper) {
+    // 获取 banner 的高度（包括图片）
+    const bannerHeight = bannerWrapper.offsetHeight
+    // 当滚动超过banner高度时，固定导航栏
+    navbarOffset.value = bannerHeight
+    console.log('Banner height calculated:', bannerHeight)
+    
+    // 计算完成后立即更新导航栏状态
+    handleScroll()
+  }
+}
+
+onMounted(() => {
+  // 等待 banner 图片加载完成
+  const bannerImage = document.querySelector('.banner-image') as HTMLImageElement
+  
+  if (bannerImage) {
+    // 如果图片已经加载完成（从缓存加载）
+    if (bannerImage.complete) {
+      calculateNavOffset()
+    } else {
+      // 监听图片加载完成事件
+      bannerImage.addEventListener('load', () => {
+        calculateNavOffset()
+      })
+    }
+  } else {
+    // 如果没有图片（使用渐变背景），延迟计算
+    setTimeout(calculateNavOffset, 100)
+  }
+  
+  // 监听窗口大小变化，重新计算
+  window.addEventListener('resize', calculateNavOffset)
   window.addEventListener('scroll', handleScroll)
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+  window.removeEventListener('resize', calculateNavOffset)
 })
 
 interface MenuItem {
@@ -273,16 +296,16 @@ const toggleMobileMenu = () => {
   left: 0;
   right: 0;
   z-index: 100;
-  transition: all var(--transition-base);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   
   &.nav-fixed {
     position: fixed;
     top: 0;
     bottom: auto;
     z-index: 1000;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(10px);
-
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   }
 }
 
