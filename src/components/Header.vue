@@ -85,7 +85,7 @@ interface MenuItem {
 const menuItems = ref<MenuItem[]>([
   { label: 'Home', path: '/' },
   { label: 'Themes', path: '/themes' },
-  { label: 'Keynote Speakers', path: '/keynote-speakers', disabled: true },
+  { label: 'Keynote Speakers', path: '/keynote-speakers' },
   {
     label: 'Contribute',
     path: '/contribute',
