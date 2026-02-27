@@ -13,7 +13,8 @@ const speakers = ref<Speaker[]>([
     name: 'Carlo Ratti',
     titles: [
       'Professor, MIT and Politecnico di Milano',
-      'Director, Senseable City Lab and Founding Partner, CRA-Carlo Ratti Associati'
+      'Director Senseable City Lab',
+      'Founding Partner, CRA-Carlo Ratti Associati'
     ],
     bio: 'Carlo Ratti is an architect and engineer who leads the design and innovation practice CRA-Carlo Ratti Associati and teaches at the Massachusetts Institute of Technology, where he directs the MIT Senseable City Lab. He is also a professor at the Politecnico di Milano. He graduated from the Politecnico di Torino and the École Nationale des Ponts et Chaussées in Paris, and later earned an M.Phil. and Ph.D. from the University of Cambridge. His work has been exhibited at venues including La Biennale di Venezia, the Design Museum in Barcelona, the Science Museum in London, and the Museum of Modern Art in New York. He was the Curator of the 2025 Venice Architecture Biennale.',
     image: new URL('../assets/images/carloratti.jpg', import.meta.url).href
