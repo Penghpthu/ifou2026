@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // Contact page - 联系页面，包含邮件联系方式
-const emailAddress = '2026ifou@mail.tsinghua.edu.cn';
+const emailAddress = '2026ifou@tsinghua.edu.cn';
 </script>
 
 <template>
