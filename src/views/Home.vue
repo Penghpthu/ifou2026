@@ -188,11 +188,15 @@
             <div class="guideline-item">
               <div class="guideline-content">
                 <h4>5. Publication Opportunity:</h4>
-                <p>Authors of accepted abstracts will be invited to present their work at the conference and will subsequently be eligible to submit a full paper for consideration in the official IFoU 2026 Conference Proceedings or affiliated journal special issues (see partner journals below).</p>
+                <p>Authors of accepted abstracts will be invited to present their work at the conference and will subsequently be eligible to submit a full paper for consideration in the official IFoU 2026 Conference Proceedings or affiliated journal special issues.</p>
               </div>
             </div>
           </div>
 
+          <div class="submission-extension-notice">
+            <p class="submission-extension-notice-line">The Deadline of Abstract Submission is extended to 30 April 2026.</p>
+            <p class="submission-extension-notice-line">The updated abstract submission system will be re-open from 13 April onwards.</p>
+          </div>
           <div class="submission-button-container">
             <a href="#" class="submission-button">Click Here For Submission</a>
           </div>
@@ -205,7 +209,10 @@
 
         <div class="dates-list">
           <div class="date-item">
-            <div class="date-value">15/04/2026</div>
+            <div class="date-value date-value--stacked">
+              <span class="date-value-current">30/04/2026</span>
+              <span class="date-value-superseded">15/04/2026</span>
+            </div>
             <div class="date-event">Deadline of abstract submission</div>
           </div>
           <div class="date-item">
@@ -435,6 +442,28 @@ h1.main-title {
   margin-bottom: var(--spacing-xl);
 }
 
+.submission-extension-notice {
+  margin-top: var(--spacing-2xl);
+  margin-bottom: var(--spacing-lg);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 52rem;
+  text-align: center;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  color: var(--primary-purple);
+  line-height: 1.35;
+}
+
+.submission-extension-notice-line {
+  margin: 0;
+  color: var(--primary-purple);
+
+  & + & {
+    margin-top: 0.12em;
+  }
+}
+
 .guideline-item {
   margin-bottom: var(--spacing-lg);
   position: relative;
@@ -479,7 +508,7 @@ h1.main-title {
 
 .submission-button-container {
   text-align: center;
-  margin-top: var(--spacing-xl);
+  margin-top: 0;
   padding-bottom: var(--spacing-sm);
 }
 
@@ -532,6 +561,24 @@ h1.main-title {
   color: var(--text-primary);
   text-align: center;
   font-family: var(--font-family-heading);
+}
+
+.date-value--stacked {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2em;
+  line-height: 1.25;
+}
+
+.date-value-current {
+  color: var(--primary-purple);
+}
+
+.date-value-superseded {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+  font-weight: var(--font-weight-medium);
 }
 
 .date-event {
@@ -587,6 +634,10 @@ h1.main-title {
   .date-value,
   .date-event {
     text-align: left;
+  }
+
+  .date-value--stacked {
+    align-items: flex-start;
   }
 
   .section-title {

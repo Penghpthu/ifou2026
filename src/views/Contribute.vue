@@ -82,7 +82,7 @@ const guidelines = ref<Guideline[]>([
   {
     number: '5',
     title: 'Publication Opportunity:',
-    content: 'Authors of accepted abstracts will be invited to present their work at the conference and will subsequently be eligible to submit a full paper for consideration in the official IFoU 2026 Conference Proceedings or affiliated journal special issues (see partner journals below).'
+    content: 'Authors of accepted abstracts will be invited to present their work at the conference and will subsequently be eligible to submit a full paper for consideration in the official IFoU 2026 Conference Proceedings or affiliated journal special issues.'
   }
 ]);
 
@@ -148,6 +148,10 @@ const partnerJournals = ref<Journal[]>([
           </div>
         </div>
 
+        <div class="submission-extension-notice">
+          <p class="submission-extension-notice-line">The Deadline of Abstract Submission is extended to 30 April 2026.</p>
+          <p class="submission-extension-notice-line">The updated abstract submission system will be re-open from 13 April onwards.</p>
+        </div>
         <div class="submission-button-wrapper">
           <a href="#" class="submission-button">Click Here For Submission</a>
         </div>
@@ -257,6 +261,28 @@ const partnerJournals = ref<Journal[]>([
   display: flex;
   flex-direction: column;
   margin-bottom: var(--spacing-xl);
+}
+
+.submission-extension-notice {
+  margin-top: var(--spacing-2xl);
+  margin-bottom: var(--spacing-lg);
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 52rem;
+  text-align: center;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  color: var(--primary-purple);
+  line-height: 1.35;
+}
+
+.submission-extension-notice-line {
+  margin: 0;
+  color: var(--primary-purple);
+
+  & + & {
+    margin-top: 0.12em;
+  }
 }
 
 .guideline-item {

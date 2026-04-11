@@ -4,7 +4,7 @@ import { ref } from 'vue'
 interface Speaker {
   name: string
   titles: string[]
-  bio: string
+  bio: string | string[]
   image: string
 }
 
@@ -46,6 +46,25 @@ const speakers = ref<Speaker[]>([
     ],
     bio: 'Zhang Pengju is a Professor and PhD Supervisor, Academician of the Chinese Academy of Engineering, and a National Master of Engineering Survey and Design. He serves as Chair of the Western New Regional Architecture Committee of the Architectural Society of China; Director of the International Joint Laboratory of Human Settlement Science for the Eurasian Grassland Belt; Director of the Key Laboratory of Grassland Human Settlement Systems of Inner Mongolia Autonomous Region; and Chair of the Academic Committee of Inner Mongolia University of Technology. His work focuses on regional architecture education, research, and practice. He has advanced the theoretical foundations, methodologies, and practical pathways of Chinese regional architecture, established the localized construction theory of "Plain Construction," and developed the framework for grassland human settlement systems. His work has received major international awards, including the Aga Khan Award for Architecture and the Architecture Gold Medal of the Architects Regional Council Asia (ARCASIA).',
     image: new URL('../assets/images/zhangpengju.jpg', import.meta.url).href
+  },
+  {
+    name: 'Yang Jun',
+    titles: ['Deputy Director, Beijing Municipal Commission of Planning and Natural Resources'],
+    bio: 'Ms. YANG Jun is the Deputy Director and Member of the Party Leadership Group of the Beijing Municipal Commission of Planning and Natural Resources, previously seconded to the Ministry of Natural Resources as Deputy Director of the Spatial Planning Bureau. She has extensive experience ranging from national-level policy formulation to the compilation and implementation of Beijing\'s master plan, as well as detailed planning and the practical implementation of urban renewal. She possesses profound theoretical and practical expertise in the construction of a multi-plan integration territorial spatial system, the coordination between spatial planning and economic development, and innovations in planning and land policies. In recent years, her work achievements include: leading the development of Beijing\'s territorial spatial planning system, establishing an institutional framework for advancing the restructuring of Beijing\'s territorial spatial planning in the new era; coordinating the implementation of Beijing\'s master urban plan and pioneering the establishment of an urban health check and evaluation system; organizing the formulation of district-level plans, block control regulations, and township-level territorial spatial plans, achieving an integrated outcome of multi-plan integration; and formulating policies such as building scale flow control and functional mixing of construction land, creating an institutional system that effectively supports high-quality urban renewal in the capital.',
+    image: new URL('../assets/images/yangjun.jpg', import.meta.url).href
+  },
+  {
+    name: 'Hope Magidimisha-Chipungu',
+    titles: [
+      'Professor, Discipline of Town and Regional Planning, University of KwaZulu-Natal (UKZN)',
+      'South African Research Chair Initiative (SARChI) Chair in Inclusive Cities',
+      'National Planning Commissioner, Presidency of South Africa'
+    ],
+    bio: [
+      'Professor Hope Magidimisha-Chipungu is a distinguished academic in the Discipline of Town and Regional Planning at the University of KwaZulu-Natal (UKZN). She is an NRF-rated researcher and holds the South African Research Chair Initiative (SARChI) Chair in Inclusive Cities, focusing on spatial justice, inclusive urban development, climate change, smart cities, and transformative planning. She also serves as a National Planning Commissioner in the Presidency of South Africa, contributing to national strategic planning and policy advisory processes. She made history as the first Black South African-born woman to be appointed as a Full Professor in Town and Regional Planning in South Africa, marking an important milestone in the transformation of the built environment professions.',
+      'Professor Magidimisha-Chipungu plays several leadership roles in professional planning institutions. She is the Alternate Chairperson of the South African Council for Planners (SACPLAN) and Chairperson of the SACPLAN Transformation Committee, where she promotes transformation within the planning profession. She also serves as City Planning Commissioner for the eThekwini Municipality, advising the Executive Committee and municipal councilors on strategic planning matters. In addition, she previously served on the COGTA Advisory Committee, advising the Office of the Premier in KwaZulu-Natal on spatial equity and development planning. Internationally, she serves on the Board of the International Society of City and Regional Planners (ISOCARP) and leads the Young Planning Professionals Programme as its Director. She also served as Co-General Rapporteur for the 57th ISOCARP World Planning Congress in Doha.'
+    ],
+    image: new URL('../assets/images/hope.jpg', import.meta.url).href
   }
 ])
 </script>
@@ -69,7 +88,10 @@ const speakers = ref<Speaker[]>([
             <div class="speaker-titles">
               <p v-for="(title, i) in speaker.titles" :key="i" class="speaker-title">{{ title }}</p>
             </div>
-            <p class="speaker-bio">{{ speaker.bio }}</p>
+            <template v-if="Array.isArray(speaker.bio)">
+              <p v-for="(paragraph, bi) in speaker.bio" :key="bi" class="speaker-bio">{{ paragraph }}</p>
+            </template>
+            <p v-else class="speaker-bio">{{ speaker.bio }}</p>
           </div>
         </div>
       </div>
@@ -189,6 +211,10 @@ const speakers = ref<Speaker[]>([
   line-height: 1.6;
   text-align: justify;
   margin: 0;
+
+  & + & {
+    margin-top: var(--spacing-md);
+  }
 }
 
 /* Responsive Design */
