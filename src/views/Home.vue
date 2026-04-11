@@ -194,11 +194,24 @@
           </div>
 
           <div class="submission-extension-notice">
-            <p class="submission-extension-notice-line">The Deadline of Abstract Submission is extended to 30 April 2026.</p>
-            <p class="submission-extension-notice-line">The updated abstract submission system will be re-open from 13 April onwards.</p>
+            <div
+              class="submission-notice-marquee"
+              role="marquee"
+              aria-label="The Deadline of Abstract Submission is extended to 30 April 2026."
+            >
+              <div class="submission-notice-marquee-track">
+                <span class="submission-notice-marquee-text">The Deadline of Abstract Submission is extended to 30 April 2026.</span>
+                <span class="submission-notice-marquee-text" aria-hidden="true">The Deadline of Abstract Submission is extended to 30 April 2026.</span>
+              </div>
+            </div>
           </div>
           <div class="submission-button-container">
-            <a href="#" class="submission-button">Click Here For Submission</a>
+            <a
+              href="https://easychair.org/conferences/?conf=ifou2026"
+              class="submission-button"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Click Here For Submission</a>
           </div>
         </div>
       </section>
@@ -447,20 +460,61 @@ h1.main-title {
   margin-bottom: var(--spacing-lg);
   margin-left: auto;
   margin-right: auto;
-  max-width: 52rem;
-  text-align: center;
-  font-size: var(--font-size-base);
-  font-weight: var(--font-weight-normal);
-  color: var(--primary-purple);
-  line-height: 1.35;
+  max-width: 56rem;
+  font-size: var(--font-size-xl);
+  line-height: 1.45;
+  letter-spacing: 0.01em;
 }
 
-.submission-extension-notice-line {
-  margin: 0;
-  color: var(--primary-purple);
+.submission-notice-marquee {
+  overflow: hidden;
+  width: 100%;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--primary-pink) 10%, var(--bg-white));
+  padding: var(--spacing-sm) 0;
+}
 
-  & + & {
-    margin-top: 0.12em;
+.submission-notice-marquee-track {
+  display: inline-flex;
+  width: max-content;
+  animation: submission-marquee-scroll 22s linear infinite;
+}
+
+.submission-notice-marquee-text {
+  flex-shrink: 0;
+  padding-right: 3rem;
+  margin: 0;
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family-heading);
+  color: var(--primary-pink);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .submission-notice-marquee-track {
+    animation: none;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .submission-notice-marquee-text {
+    padding-right: 0;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .submission-notice-marquee-text[aria-hidden='true'] {
+    display: none;
+  }
+}
+
+@keyframes submission-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
   }
 }
 
@@ -572,7 +626,7 @@ h1.main-title {
 }
 
 .date-value-current {
-  color: var(--primary-purple);
+  color: var(--primary-pink);
 }
 
 .date-value-superseded {
@@ -671,6 +725,10 @@ h1.main-title {
   .date-value,
   .date-event {
     font-size: var(--font-size-base);
+  }
+
+  .submission-extension-notice {
+    font-size: var(--font-size-lg);
   }
 }
 </style>
