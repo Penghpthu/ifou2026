@@ -229,11 +229,11 @@
             <div class="date-event">Deadline of abstract submission</div>
           </div>
           <div class="date-item">
-            <div class="date-value">15/05/2026</div>
+            <div class="date-value">30/05/2026</div>
             <div class="date-event">Notification of abstract acceptance</div>
           </div>
           <div class="date-item">
-            <div class="date-value">01/06/2026</div>
+            <div class="date-value">15/06/2026</div>
             <div class="date-event">Registration opens</div>
           </div>
           <div class="date-item">

@@ -103,11 +103,11 @@
               <td>Deadline of abstract submission</td>
             </tr>
             <tr>
-              <td>15/05/2026</td>
+              <td>30/05/2026</td>
               <td>Notification of abstract acceptance</td>
             </tr>
             <tr>
-              <td>01/06/2026</td>
+              <td>15/06/2026</td>
               <td>Registration opens</td>
             </tr>
           </tbody>
