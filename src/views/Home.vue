@@ -237,7 +237,7 @@
             <div class="date-event">Registration opens</div>
           </div>
           <div class="date-item">
-            <div class="date-value">01/07/2026</div>
+            <div class="date-value">15/07/2026</div>
             <div class="date-event">Deadline of early bird registration</div>
           </div>
           <div class="date-item">
