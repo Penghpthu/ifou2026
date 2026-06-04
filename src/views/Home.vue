@@ -193,18 +193,6 @@
             </div>
           </div>
 
-          <div class="submission-extension-notice">
-            <div
-              class="submission-notice-marquee"
-              role="marquee"
-              aria-label="The Deadline of Abstract Submission is extended to 30 April 2026."
-            >
-              <div class="submission-notice-marquee-track">
-                <span class="submission-notice-marquee-text">The Deadline of Abstract Submission is extended to 30 April 2026.</span>
-                <span class="submission-notice-marquee-text" aria-hidden="true">The Deadline of Abstract Submission is extended to 30 April 2026.</span>
-              </div>
-            </div>
-          </div>
           <div class="submission-button-container">
             <a
               href="https://easychair.org/conferences/?conf=ifou2026"
@@ -222,10 +210,7 @@
 
         <div class="dates-list">
           <div class="date-item">
-            <div class="date-value date-value--stacked">
-              <span class="date-value-current">30/04/2026</span>
-              <span class="date-value-superseded">15/04/2026</span>
-            </div>
+            <div class="date-value">30/04/2026</div>
             <div class="date-event">Deadline of abstract submission</div>
           </div>
           <div class="date-item">
@@ -455,69 +440,6 @@ h1.main-title {
   margin-bottom: var(--spacing-xl);
 }
 
-.submission-extension-notice {
-  margin-top: var(--spacing-2xl);
-  margin-bottom: var(--spacing-lg);
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 56rem;
-  font-size: var(--font-size-xl);
-  line-height: 1.45;
-  letter-spacing: 0.01em;
-}
-
-.submission-notice-marquee {
-  overflow: hidden;
-  width: 100%;
-  border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--primary-pink) 10%, var(--bg-white));
-  padding: var(--spacing-sm) 0;
-}
-
-.submission-notice-marquee-track {
-  display: inline-flex;
-  width: max-content;
-  animation: submission-marquee-scroll 22s linear infinite;
-}
-
-.submission-notice-marquee-text {
-  flex-shrink: 0;
-  padding-right: 3rem;
-  margin: 0;
-  font-weight: var(--font-weight-semibold);
-  font-family: var(--font-family-heading);
-  color: var(--primary-pink);
-  white-space: nowrap;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .submission-notice-marquee-track {
-    animation: none;
-    justify-content: center;
-    width: 100%;
-  }
-
-  .submission-notice-marquee-text {
-    padding-right: 0;
-    text-align: center;
-    white-space: normal;
-  }
-
-  .submission-notice-marquee-text[aria-hidden='true'] {
-    display: none;
-  }
-}
-
-@keyframes submission-marquee-scroll {
-  from {
-    transform: translateX(0);
-  }
-
-  to {
-    transform: translateX(-50%);
-  }
-}
-
 .guideline-item {
   margin-bottom: var(--spacing-lg);
   position: relative;
@@ -617,24 +539,6 @@ h1.main-title {
   font-family: var(--font-family-heading);
 }
 
-.date-value--stacked {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.2em;
-  line-height: 1.25;
-}
-
-.date-value-current {
-  color: var(--primary-pink);
-}
-
-.date-value-superseded {
-  text-decoration: line-through;
-  color: var(--text-secondary);
-  font-weight: var(--font-weight-medium);
-}
-
 .date-event {
   font-size: var(--font-size-xl);
   font-weight: var(--font-weight-semibold);
@@ -690,10 +594,6 @@ h1.main-title {
     text-align: left;
   }
 
-  .date-value--stacked {
-    align-items: flex-start;
-  }
-
   .section-title {
     font-size: var(--font-size-xl);
     padding: var(--spacing-xs) var(--spacing-lg);
@@ -725,10 +625,6 @@ h1.main-title {
   .date-value,
   .date-event {
     font-size: var(--font-size-base);
-  }
-
-  .submission-extension-notice {
-    font-size: var(--font-size-lg);
   }
 }
 </style>
